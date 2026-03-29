@@ -4,52 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zeno Knowledge Base</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐿️</text></svg>">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif; background: #0d1117; color: #c9d1d9; padding: 16px; }
-  h1 { color: #58a6ff; font-size: 1.4em; padding-bottom: 8px; border-bottom: 1px solid #30363d; margin-bottom: 12px; }
-  .subtitle { color: #8b949e; font-size: 0.85em; margin-bottom: 16px; }
-  .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
-  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .card-name { color: #58a6ff; font-weight: 600; font-size: 1.05em; }
-  .card-num { color: #484f58; font-size: 0.8em; }
-  .card-desc { color: #c9d1d9; font-size: 0.9em; line-height: 1.5; margin-bottom: 8px; }
-  .card-footer { display: flex; justify-content: space-between; align-items: center; }
-  .card-category { background: #1f2937; color: #7ee787; font-size: 0.75em; padding: 3px 8px; border-radius: 12px; }
-  .card-link { color: #58a6ff; font-size: 0.85em; text-decoration: none; }
-  .card-link:hover { text-decoration: underline; }
-  .empty { color: #8b949e; text-align: center; padding: 60px 20px; font-size: 0.95em; }
-  .count { color: #8b949e; font-size: 0.8em; margin-bottom: 12px; }
-  .search { width: 100%; padding: 10px 12px; background: #161b22; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-size: 0.95em; margin-bottom: 14px; outline: none; }
-  .search:focus { border-color: #58a6ff; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif; background: #0d1117; color: #c9d1d9; padding: 16px; padding-bottom: 80px; }
+  
+  /* Header */
+  .header { margin-bottom: 16px; }
+  h1 { color: #f0f6fc; font-size: 1.3em; padding-bottom: 6px; }
+  .subtitle { color: #8b949e; font-size: 0.8em; }
+  
+  /* Search */
+  .search-wrap { position: sticky; top: 0; background: #0d1117; padding: 8px 0 12px; z-index: 10; }
+  .search { width: 100%; padding: 10px 14px; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: #c9d1d9; font-size: 0.95em; outline: none; -webkit-appearance: none; }
+  .search:focus { border-color: #58a6ff; box-shadow: 0 0 0 3px rgba(88,166,255,0.15); }
   .search::placeholder { color: #484f58; }
+  
+  /* Filters */
+  .filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-btn { white-space: nowrap; padding: 5px 12px; background: #161b22; border: 1px solid #30363d; border-radius: 16px; color: #8b949e; font-size: 0.78em; cursor: pointer; transition: all 0.2s; }
+  .filter-btn.active { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+  
+  /* Stats */
+  .stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .count { color: #8b949e; font-size: 0.8em; }
+  .sort-btn { color: #58a6ff; font-size: 0.78em; background: none; border: none; cursor: pointer; }
+  
+  /* Cards */
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 10px; transition: border-color 0.2s, transform 0.1s; }
+  .card:active { transform: scale(0.98); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .card-name { color: #f0f6fc; font-weight: 600; font-size: 1em; }
+  .card-num { color: #484f58; font-size: 0.75em; min-width: 24px; text-align: right; }
+  .card-desc { color: #8b949e; font-size: 0.85em; line-height: 1.55; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-desc.expanded { -webkit-line-clamp: unset; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .card-category { background: rgba(56,139,253,0.1); color: #58a6ff; font-size: 0.72em; padding: 3px 10px; border-radius: 12px; }
+  .card-link { display: inline-flex; align-items: center; gap: 4px; color: #58a6ff; font-size: 0.82em; text-decoration: none; padding: 4px 10px; border-radius: 6px; background: rgba(56,139,253,0.08); }
+  .card-link:active { background: rgba(56,139,253,0.2); }
+  
+  /* Empty */
+  .empty { color: #484f58; text-align: center; padding: 60px 20px; font-size: 0.95em; }
+  
+  /* Scroll to top */
+  .top-btn { position: fixed; bottom: 24px; right: 20px; width: 42px; height: 42px; border-radius: 50%; background: #1f6feb; color: #fff; border: none; font-size: 1.2em; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,0.4); display: none; z-index: 20; }
+  .top-btn.show { display: block; }
 </style>
 </head>
 <body>
-<h1>🐿️ Zeno Knowledge Base</h1>
-<p class="subtitle">#ナレッジ チャンネルから随時更新</p>
-<input type="text" class="search" id="search" placeholder="🔍 検索...">
-<p class="count" id="count"></p>
-<div id="content"><p class="empty">まだツールが登録されていません</p></div>
+
+<div class="header">
+  <h1>🐿️ Zeno Knowledge Base</h1>
+  <p class="subtitle">Discord #ナレッジ から随時更新</p>
+</div>
+
+<div class="search-wrap">
+  <input type="text" class="search" id="search" placeholder="検索...">
+</div>
+
+<div class="filters" id="filters"></div>
+
+<div class="stats">
+  <span class="count" id="count"></span>
+  <button class="sort-btn" id="sortBtn" onclick="toggleSort()">新しい順 ↓</button>
+</div>
+
+<div id="content"><p class="empty">読み込み中...</p></div>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-let allData=[];
-fetch('tools.json').then(r=>r.json()).then(data=>{
-  allData=data;
-  render(data);
-  document.getElementById('search').addEventListener('input',e=>{
-    const q=e.target.value.toLowerCase();
-    render(q?data.filter(t=>t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.category.toLowerCase().includes(q)):data);
-  });
+let allData=[], activeFilter='all', sortAsc=false;
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('topBtn').classList.toggle('show', window.scrollY > 300);
 });
+
+fetch('tools.json?t='+Date.now()).then(r=>r.json()).then(data=>{
+  allData=data;
+  buildFilters(data);
+  render(data);
+  
+  document.getElementById('search').addEventListener('input',e=>{
+    applyFilters();
+  });
+}).catch(()=>{
+  document.getElementById('content').innerHTML='<p class="empty">まだツールが登録されていません</p>';
+});
+
+function buildFilters(data){
+  const cats=[...new Set(data.map(t=>t.category))];
+  if(cats.length<2) return;
+  const el=document.getElementById('filters');
+  el.innerHTML='<button class="filter-btn active" data-cat="all">すべて</button>'+
+    cats.map(c=>`<button class="filter-btn" data-cat="${c}">${c}</button>`).join('');
+  el.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.onclick=()=>{
+      el.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter=btn.dataset.cat;
+      applyFilters();
+    };
+  });
+}
+
+function toggleSort(){
+  sortAsc=!sortAsc;
+  document.getElementById('sortBtn').textContent=sortAsc?'古い順 ↑':'新しい順 ↓';
+  applyFilters();
+}
+
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let filtered=allData;
+  if(activeFilter!=='all') filtered=filtered.filter(t=>t.category===activeFilter);
+  if(q) filtered=filtered.filter(t=>t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.category.toLowerCase().includes(q));
+  if(sortAsc) filtered=[...filtered].reverse();
+  render(filtered);
+}
+
 function render(data){
   const c=document.getElementById('content');
   const ct=document.getElementById('count');
   if(!data.length){c.innerHTML='<p class="empty">該当なし</p>';ct.textContent='';return;}
-  ct.textContent=data.length+'件';
-  c.innerHTML=data.map((t,i)=>`<div class="card">
-    <div class="card-header"><span class="card-name">${t.name}</span><span class="card-num">#${i+1}</span></div>
+  ct.textContent=data.length+'件のツール';
+  c.innerHTML=data.map((t,i)=>`<div class="card" onclick="this.querySelector('.card-desc').classList.toggle('expanded')">
+    <div class="card-header"><span class="card-name">${t.name}</span><span class="card-num">#${allData.indexOf(t)+1}</span></div>
     <p class="card-desc">${t.desc}</p>
-    <div class="card-footer"><span class="card-category">${t.category}</span><a class="card-link" href="${t.url}" target="_blank">詳細 →</a></div>
+    <div class="card-footer"><span class="card-category">${t.category}</span><a class="card-link" href="${t.url}" target="_blank" onclick="event.stopPropagation()">開く ↗</a></div>
   </div>`).join('');
 }
 </script>
