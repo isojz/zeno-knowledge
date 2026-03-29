@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeno Knowledge Base</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; }
+  h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  th { background: #161b22; color: #58a6ff; text-align: left; padding: 12px; border: 1px solid #30363d; }
+  td { padding: 10px 12px; border: 1px solid #30363d; }
+  tr:hover { background: #161b22; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .updated { color: #8b949e; font-size: 0.85em; margin-top: 10px; }
+  .empty { color: #8b949e; text-align: center; padding: 40px; }
+</style>
+</head>
+<body>
+<h1>🐿️ Zeno Knowledge Base</h1>
+<p>有用なツール・サービスの一覧。<code>#ナレッジ</code> チャンネルから随時更新。</p>
+<div id="content"><p class="empty">まだツールが登録されていません</p></div>
+<p class="updated" id="updated"></p>
+<script>
+fetch('tools.json').then(r=>r.json()).then(data=>{
+  if(!data.length){return}
+  let h='<table><tr><th>#</th><th>ツール名</th><th>概要</th><th>用途</th><th>リンク</th></tr>';
+  data.forEach((t,i)=>{
+    h+=`<tr><td>${i+1}</td><td><strong>${t.name}</strong></td><td>${t.desc}</td><td>${t.category}</td><td><a href="${t.url}" target="_blank">→</a></td></tr>`;
+  });
+  h+='</table>';
+  document.getElementById('content').innerHTML=h;
+  document.getElementById('updated').textContent='Last updated: '+new Date().toLocaleDateString('ja-JP');
+});
+</script>
+</body>
+</html>
