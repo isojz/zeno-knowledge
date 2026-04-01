@@ -9,4 +9,5 @@
 | 3 | Browser Use CLI 2.0 | AIエージェントがコマンドラインからWebブラウザを自動操作するOSSのPythonライブラリ。CDP接続+デーモンによるセッション保持で操作速度2倍。Gemini/GPT/Claude等対応。ローカルLLMも可 | AI・ブラウザ自動操作・エージェント | https://github.com/browser-use/browser-use |
 | 4 | cmux | 複数AIコーディングエージェントを同時管理するmacOSネイティブターミナルアプリ。Ghosttyベース・GPU高速レンダリング。エージェント完了時の通知リング・バッジ表示が強力。yazi/lazygit/Raycastと組み合わせた開発環境構成の解説記事 | ターミナル・AI開発環境・macOS | https://zenn.dev/maeken/articles/claude-code-terminal-setup |
 | 5 | ralph-loop | Claude Code等をループで自律的に繰り返し実行し、タスク完了まで自走させるプラグイン。毎回クリーンなインスタンスを起動しコンテキスト劣化を防止。テスト通過をバックプレッシャーとして品質担保。694ファイルのJest→Vitest移行を一晩で完了した事例 | AI・自動化・Claude Code・プラグイン | https://qiita.com/semba_yui/items/8c7125722844cf426e12 |
+| 6 | Claude computer use + Dispatch | AnthropicのClaude computer use機能。ClaudeがユーザーのPC画面を認識・操作（クリック・入力等）してタスクを実行。Dispatch機能でスマホからPCへの作業指示も可能。現在macOS限定でPro/Max向けプレビュー | AI・PC自動操作・エージェント | https://ledge.ai/articles/anthropic_claude_computer_use_dispatch_pc_control |
 

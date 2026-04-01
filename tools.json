@@ -28,5 +28,11 @@
     "desc": "Claude Code等をループで自律的に繰り返し実行し、タスク完了まで自走させるプラグイン。毎回クリーンなインスタンスを起動しコンテキスト劣化を防止。テスト通過をバックプレッシャーとして品質担保。694ファイルのJest→Vitest移行を一晩で完了した事例",
     "category": "AI・自動化・Claude Code・プラグイン",
     "url": "https://qiita.com/semba_yui/items/8c7125722844cf426e12"
+  },
+  {
+    "name": "Claude computer use + Dispatch",
+    "desc": "AnthropicのClaude computer use機能。ClaudeがユーザーのPC画面を認識・操作（クリック・入力等）してタスクを実行。Dispatch機能でスマホからPCへの作業指示も可能。現在macOS限定でPro/Max向けプレビュー",
+    "category": "AI・PC自動操作・エージェント",
+    "url": "https://ledge.ai/articles/anthropic_claude_computer_use_dispatch_pc_control"
   }
 ]
