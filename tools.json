@@ -4,5 +4,11 @@
     "desc": "ネットワークをスキャンしてホスト・サービスを検出し、構成図を自動生成・更新するツール。SNMP対応、セルフホスト版(Docker)あり。Free版はエクスポート不可だがセルフホスト版は制限なし",
     "category": "ネットワーク管理・構成図・可視化",
     "url": "https://scanopy.net/"
+  },
+  {
+    "name": "Gemini Canvas + LaTeX Beamer",
+    "desc": "Gemini CanvasでLaTeX Beamerをリアルタイムプレビューしながらスライド作成する手法。TeX環境不要で学会発表レベルの品質。システムプロンプト例あり",
+    "category": "AI・スライド作成・LaTeX",
+    "url": "https://qiita.com/zakuro/items/6bb67ea89fb6e2074203"
   }
 ]
