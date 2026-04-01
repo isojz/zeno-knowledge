@@ -22,5 +22,11 @@
     "desc": "複数AIコーディングエージェントを同時管理するmacOSネイティブターミナルアプリ。Ghosttyベース・GPU高速レンダリング。エージェント完了時の通知リング・バッジ表示が強力。yazi/lazygit/Raycastと組み合わせた開発環境構成の解説記事",
     "category": "ターミナル・AI開発環境・macOS",
     "url": "https://zenn.dev/maeken/articles/claude-code-terminal-setup"
+  },
+  {
+    "name": "ralph-loop",
+    "desc": "Claude Code等をループで自律的に繰り返し実行し、タスク完了まで自走させるプラグイン。毎回クリーンなインスタンスを起動しコンテキスト劣化を防止。テスト通過をバックプレッシャーとして品質担保。694ファイルのJest→Vitest移行を一晩で完了した事例",
+    "category": "AI・自動化・Claude Code・プラグイン",
+    "url": "https://qiita.com/semba_yui/items/8c7125722844cf426e12"
   }
 ]
