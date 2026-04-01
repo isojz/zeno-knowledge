@@ -10,5 +10,11 @@
     "desc": "Gemini CanvasでLaTeX Beamerをリアルタイムプレビューしながらスライド作成する手法。TeX環境不要で学会発表レベルの品質。システムプロンプト例あり",
     "category": "AI・スライド作成・LaTeX",
     "url": "https://qiita.com/zakuro/items/6bb67ea89fb6e2074203"
+  },
+  {
+    "name": "Browser Use CLI 2.0",
+    "desc": "AIエージェントがコマンドラインからWebブラウザを自動操作するOSSのPythonライブラリ。CDP接続+デーモンによるセッション保持で操作速度2倍。Gemini/GPT/Claude等対応。ローカルLLMも可",
+    "category": "AI・ブラウザ自動操作・エージェント",
+    "url": "https://github.com/browser-use/browser-use"
   }
 ]
