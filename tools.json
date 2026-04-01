@@ -34,5 +34,11 @@
     "desc": "AnthropicのClaude computer use機能。ClaudeがユーザーのPC画面を認識・操作（クリック・入力等）してタスクを実行。Dispatch機能でスマホからPCへの作業指示も可能。現在macOS限定でPro/Max向けプレビュー",
     "category": "AI・PC自動操作・エージェント",
     "url": "https://ledge.ai/articles/anthropic_claude_computer_use_dispatch_pc_control"
+  },
+  {
+    "name": "CLAUDE.md / MEMORY.md設計ガイド",
+    "desc": "Claude CodeのCLAUDE.md（ルールブック）とMEMORY.md（自動学習メモ）の正しい使い分け解説。サブディレクトリ遅延読み込み、rules分割、@参照、paths指定、HTMLコメント等のテクニック集",
+    "category": "AI・Claude Code・設定・ベストプラクティス",
+    "url": "https://zenn.dev/junko_ai/articles/311b69300fde6d"
   }
 ]
