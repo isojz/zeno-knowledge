@@ -40,5 +40,11 @@
     "desc": "Claude CodeのCLAUDE.md（ルールブック）とMEMORY.md（自動学習メモ）の正しい使い分け解説。サブディレクトリ遅延読み込み、rules分割、@参照、paths指定、HTMLコメント等のテクニック集",
     "category": "AI・Claude Code・設定・ベストプラクティス",
     "url": "https://zenn.dev/junko_ai/articles/311b69300fde6d"
+  },
+  {
+    "name": "Reveal.js + Vite スライド環境",
+    "desc": "MarkdownでスライドをGit管理できるReveal.jsベースの環境構築ガイド。Viteでホットリロード、数式(KaTeX)・コードブロック・フラグメント対応。5ファイル構成で完結",
+    "category": "スライド作成・Markdown・プレゼン",
+    "url": "https://zenn.dev/daming_cafe/articles/reveal-markdown-slides"
   }
 ]
